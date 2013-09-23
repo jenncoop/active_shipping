@@ -254,7 +254,7 @@ module ActiveMerchant
       end
 
       def parse_rates_response(response, origin, destination)
-        doc = REXML::Document.new(REXML::Text::unnormalize(response))
+        doc = REXML::Document.new(response)
         raise ActiveMerchant::Shipping::ResponseError, "No Quotes" unless doc.elements['price-quotes']
 
         quotes = doc.elements['price-quotes'].elements.collect('price-quote') {|node| node }
